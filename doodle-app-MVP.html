@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Projeto: Doodle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Doodle Blue -->
+    <!-- Application Structure Plan: A single-page application visualizing the project plan. The structure uses a vertical stepper/accordion layout for the 5 main stages. This allows users to focus on one stage at a time, expanding it to see details and tasks. This non-linear exploration of a linear plan is more user-friendly than a long static document. Tasks are interactive checkboxes to simulate progress tracking. The goal is to make the project plan itself an engaging and clear artifact. -->
+    <!-- Visualization & Content Choices: The project plan's stages and tasks are the core information. Goal: Organize and Inform. Method: Interactive Accordion. Each stage is a clickable header (HTML/JS) that reveals its objective and a checklist of tasks (HTML). Interaction: Clicking a stage toggles visibility of its content. Checking a task updates a progress counter for that stage (JS). Justification: This transforms a static text document into an easy-to-navigate, interactive dashboard, improving clarity and engagement. Library/Method: Vanilla JS for interactions. CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .task-checkbox:checked + label span:first-child {
+            background-color: #2563eb; /* blue-600 */
+            border-color: #2563eb; /* blue-600 */
+        }
+        .task-checkbox:checked + label span:last-child {
+            text-decoration: line-through;
+            color: #64748b; /* slate-500 */
+        }
+        .task-checkbox:checked + label svg {
+            display: block;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="container mx-auto max-w-4xl p-4 sm:p-6 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Plano de Projeto: Doodle</h1>
+            <p class="mt-4 text-lg text-slate-600">Um painel interativo para acompanhar a construção do nosso app full-stack.</p>
+        </header>
+
+        <main id="project-plan">
+            
+            <!-- Tech Stack Section -->
+            <section class="mb-12 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-2xl font-bold mb-4 text-slate-800">Stack de Tecnologia</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-blue-600">Frontend</h3>
+                        <p class="text-slate-600">React Native & Expo</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-blue-600">Backend & DB</h3>
+                        <p class="text-slate-600">Google Firebase</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-blue-600">Estilização</h3>
+                        <p class="text-slate-600">React Native StyleSheet</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stages Section -->
+            <div class="space-y-4">
+                
+                <!-- Stage 1 -->
+                <div class="stage-container bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" data-stage="1">
+                    <div class="stage-header flex justify-between items-center p-5 cursor-pointer hover:bg-slate-50">
+                        <div class="flex items-center">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 font-bold text-lg mr-4">1</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-slate-800">Base do Projeto e Configuração</h3>
+                                <p class="text-sm text-slate-500 progress-text">0 de 4 tarefas concluídas</p>
+                            </div>
+                        </div>
+                        <svg class="w-6 h-6 text-slate-500 transition-transform transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+                    <div class="stage-content hidden p-6 border-t border-slate-200">
+                        <p class="mb-6 text-slate-600"><strong>Objetivo:</strong> Preparar todo o ambiente de desenvolvimento e conectar o frontend com o backend.</p>
+                        <div class="space-y-4 task-list">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task1-1" class="task-checkbox hidden">
+                                <label for="task1-1" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Configurar o Ambiente (Node.js, Git, Expo CLI)</span>
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task1-2" class="task-checkbox hidden">
+                                <label for="task1-2" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Criar o Projeto Expo com `npx create-expo-app Doodle`</span>
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task1-3" class="task-checkbox hidden">
+                                <label for="task1-3" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Criar o Projeto no Console do Firebase</span>
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task1-4" class="task-checkbox hidden">
+                                <label for="task1-4" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Conectar Frontend e Backend com o SDK do Firebase</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 2 -->
+                <div class="stage-container bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" data-stage="2">
+                    <div class="stage-header flex justify-between items-center p-5 cursor-pointer hover:bg-slate-50">
+                        <div class="flex items-center">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 font-bold text-lg mr-4">2</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-slate-800">Autenticação de Usuários</h3>
+                                <p class="text-sm text-slate-500 progress-text">0 de 3 tarefas concluídas</p>
+                            </div>
+                        </div>
+                        <svg class="w-6 h-6 text-slate-500 transition-transform transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+                    <div class="stage-content hidden p-6 border-t border-slate-200">
+                        <p class="mb-6 text-slate-600"><strong>Objetivo:</strong> Permitir que usuários se cadastrem e façam login no aplicativo.</p>
+                        <div class="space-y-4 task-list">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task2-1" class="task-checkbox hidden">
+                                <label for="task2-1" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Criar as Telas de Login e Cadastro</span>
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task2-2" class="task-checkbox hidden">
+                                <label for="task2-2" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Implementar a Lógica de Autenticação com Firebase</span>
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task2-3" class="task-checkbox hidden">
+                                <label for="task2-3" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Gerenciar o Fluxo de Navegação (React Navigation)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 3 -->
+                <div class="stage-container bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" data-stage="3">
+                    <div class="stage-header flex justify-between items-center p-5 cursor-pointer hover:bg-slate-50">
+                        <div class="flex items-center">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 font-bold text-lg mr-4">3</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-slate-800">CRUD de Tarefas (MVP)</h3>
+                                <p class="text-sm text-slate-500 progress-text">0 de 5 tarefas concluídas</p>
+                            </div>
+                        </div>
+                        <svg class="w-6 h-6 text-slate-500 transition-transform transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+                    <div class="stage-content hidden p-6 border-t border-slate-200">
+                        <p class="mb-6 text-slate-600"><strong>Objetivo:</strong> Implementar a funcionalidade principal: criar, ler, atualizar e deletar tarefas.</p>
+                        <div class="space-y-4 task-list">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task3-1" class="task-checkbox hidden">
+                                <label for="task3-1" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Modelar os Dados de Tarefas no Firestore</span>
+                                </label>
+                            </div>
+                             <div class="flex items-center">
+                                <input type="checkbox" id="task3-2" class="task-checkbox hidden">
+                                <label for="task3-2" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Criar (Create): Formulário para adicionar tarefas</span>
+                                </label>
+                            </div>
+                             <div class="flex items-center">
+                                <input type="checkbox" id="task3-3" class="task-checkbox hidden">
+                                <label for="task3-3" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Ler (Read): Exibir lista de tarefas em tempo real</span>
+                                </label>
+                            </div>
+                             <div class="flex items-center">
+                                <input type="checkbox" id="task3-4" class="task-checkbox hidden">
+                                <label for="task3-4" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Atualizar (Update): Marcar tarefa como concluída</span>
+                                </label>
+                            </div>
+                             <div class="flex items-center">
+                                <input type="checkbox" id="task3-5" class="task-checkbox hidden">
+                                <label for="task3-5" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Deletar (Delete): Remover uma tarefa</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stage 4 -->
+                <div class="stage-container bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" data-stage="4">
+                    <div class="stage-header flex justify-between items-center p-5 cursor-pointer hover:bg-slate-50">
+                        <div class="flex items-center">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 font-bold text-lg mr-4">4</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-slate-800">Organização - Projetos</h3>
+                                <p class="text-sm text-slate-500 progress-text">0 de 3 tarefas concluídas</p>
+                            </div>
+                        </div>
+                        <svg class="w-6 h-6 text-slate-500 transition-transform transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+                    <div class="stage-content hidden p-6 border-t border-slate-200">
+                        <p class="mb-6 text-slate-600"><strong>Objetivo:</strong> Adicionar um nível de organização, permitindo que o usuário agrupe tarefas em "Projetos".</p>
+                        <div class="space-y-4 task-list">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task4-1" class="task-checkbox hidden">
+                                <label for="task4-1" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Modelar os Dados de Projetos no Firestore</span>
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task4-2" class="task-checkbox hidden">
+                                <label for="task4-2" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Implementar CRUD de Projetos</span>
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task4-3" class="task-checkbox hidden">
+                                <label for="task4-3" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Filtrar Tarefas por Projeto</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 5 -->
+                <div class="stage-container bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" data-stage="5">
+                    <div class="stage-header flex justify-between items-center p-5 cursor-pointer hover:bg-slate-50">
+                        <div class="flex items-center">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 font-bold text-lg mr-4">5</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-slate-800">Polimento e Funcionalidades Avançadas</h3>
+                                <p class="text-sm text-slate-500 progress-text">0 de 4 tarefas concluídas</p>
+                            </div>
+                        </div>
+                        <svg class="w-6 h-6 text-slate-500 transition-transform transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+                    <div class="stage-content hidden p-6 border-t border-slate-200">
+                        <p class="mb-6 text-slate-600"><strong>Objetivo:</strong> Refinar a interface, a experiência do usuário e adicionar os toques finais para o portfólio.</p>
+                        <div class="space-y-4 task-list">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task5-1" class="task-checkbox hidden">
+                                <label for="task5-1" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Implementar Tema Claro/Escuro (Light/Dark Mode)</span>
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task5-2" class="task-checkbox hidden">
+                                <label for="task5-2" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Melhorias de UI/UX (loading, estados vazios, animações)</span>
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task5-3" class="task-checkbox hidden">
+                                <label for="task5-3" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Ajustar Responsividade para Web e Tablet</span>
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="task5-4" class="task-checkbox hidden">
+                                <label for="task5-4" class="flex items-center cursor-pointer text-slate-700">
+                                    <span class="w-6 h-6 rounded-md border-2 border-slate-300 flex items-center justify-center mr-3 transition-all duration-200">
+                                        <svg class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                                    </span>
+                                    <span class="transition-colors duration-200">Deploy da versão web com Firebase Hosting</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <footer class="text-center mt-12 text-slate-500 text-sm">
+            <p>&copy; 2025 Projeto Doodle. Vamos construir algo incrível!</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const stages = document.querySelectorAll('.stage-container');
+
+            stages.forEach(stage => {
+                const header = stage.querySelector('.stage-header');
+                const content = stage.querySelector('.stage-content');
+                const icon = header.querySelector('svg');
+                const taskList = content.querySelector('.task-list');
+                const progressText = header.querySelector('.progress-text');
+                
+                if (!header || !content || !taskList) return;
+
+                const tasks = taskList.querySelectorAll('.task-checkbox');
+                const totalTasks = tasks.length;
+
+                const updateProgress = () => {
+                    const completedTasks = taskList.querySelectorAll('.task-checkbox:checked').length;
+                    progressText.textContent = `${completedTasks} de ${totalTasks} tarefas concluídas`;
+                };
+
+                header.addEventListener('click', () => {
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+
+                tasks.forEach(task => {
+                    task.addEventListener('change', updateProgress);
+                });
+                
+                updateProgress();
+            });
+
+            // Open the first stage by default
+            const firstStage = document.querySelector('.stage-container[data-stage="1"]');
+            if (firstStage) {
+                firstStage.querySelector('.stage-header').click();
+            }
+        });
+    </script>
+
+</body>
+</html>
