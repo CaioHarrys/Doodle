@@ -1,14 +1,37 @@
+
 import React, { useState, useEffect } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '../firebase';
 import { Slot, useRouter, useSegments } from 'expo-router';
 import { View, ActivityIndicator } from 'react-native';
 
+const useProtectedRoute = (user: User | null, loading: boolean) => {
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Previne o redirecionamento enquanto o app ainda está carregando.
+    if (loading) {
+      return;
+    }
+
+    const inAuthGroup = segments[0] === '(auth)';
+
+    if (!user && !inAuthGroup) {
+      // Se o usuário não está logado e não está no grupo de autenticação,
+      // redireciona para a tela de login.
+      router.replace('/login');
+    } else if (user && inAuthGroup) {
+      // Se o usuário está logado e está em uma tela de autenticação,
+      // redireciona para a tela principal (home).
+      router.replace('/home');
+    }
+  }, [user, loading, segments, router]);
+};
+
 const InitialLayout = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const segments = useSegments();
-  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -17,20 +40,9 @@ const InitialLayout = () => {
     });
     return () => unsubscribe();
   }, []);
-
-  useEffect(() => {
-    if (loading) return;
-
-    const inAuthGroup = segments[0] === '(auth)';
-
-    if (user && !inAuthGroup) {
-      // Usuário logado, mas fora do grupo principal, redireciona para home
-      router.replace('/home');
-    } else if (!user) {
-      // Usuário não logado, redireciona para login
-      router.replace('/login');
-    }
-  }, [user, loading, segments, router]);
+  
+  // Passa o estado de 'loading' para o hook de proteção.
+  useProtectedRoute(user, loading);
 
   if (loading) {
     return (

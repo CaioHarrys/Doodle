@@ -1,13 +1,8 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// Importa apenas o getAuth principal por enquanto
+import { getAuth } from 'firebase/auth';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCh-YIwVX2tsHbb6RrVglATCNaS0lmj8Qg",
   authDomain: "doodle-df91a.firebaseapp.com",
@@ -18,11 +13,13 @@ const firebaseConfig = {
   measurementId: "G-XRME18H0QN"
 };
 
-// Initialize Firebase
+// Inicializa o Firebase App
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
 
-// Export the initialized app and analytics
+// Inicializa o Auth da forma mais simples.
+// Isso vai gerar um AVISO no console, mas não deve quebrar o app.
+const auth = getAuth(app);
 
-export const auth = getAuth(app);
+// Exporta os serviços que vamos usar
+export { auth };
 export const db = getFirestore(app);

@@ -1,4 +1,3 @@
-// Descrição: Tela de Cadastro (agora usa o router do Expo).
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
