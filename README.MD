@@ -95,9 +95,9 @@ Você precisará ter as seguintes ferramentas instaladas em sua máquina:
 
 ## Funcionalidades
 
--   [x] **Autenticação de Usuários:** Cadastro e Login com e-mail e senha.
--   [x] **CRUD de Tarefas:** Crie, leia, atualize e delete tarefas.
--   [x] **Organização por Projetos:** Agrupe tarefas em projetos distintos.
+-   [v] **Autenticação de Usuários:** Cadastro e Login com e-mail e senha.
+-   [v] **CRUD de Tarefas:** Crie, leia, atualize e delete tarefas.
+-   [v] **Organização por Projetos:** Agrupe tarefas em projetos distintos.
 -   [ ] **Filtros e Ordenação:** Encontre tarefas facilmente.
 -   [ ] **Modo Claro e Escuro:** Tema adaptável para preferência do usuário.
 -   [ ] **Responsividade Completa:** Layout otimizado para web, tablet e mobile.
