@@ -31,6 +31,8 @@ export function HelloWave() {
   );
 }
 
+export default HelloWave;
+
 const styles = StyleSheet.create({
   text: {
     fontSize: 28,

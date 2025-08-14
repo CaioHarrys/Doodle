@@ -6,6 +6,7 @@ export interface Task {
   id: string;
   title: string;
   completed: boolean;
+  projectId: string;
 }
 
 interface TaskItemProps {

@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 import { auth } from '../../firebase';
 import { router } from 'expo-router';
+import HelloWave from '@/components/HelloWave';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -29,6 +30,7 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
+      <HelloWave/>
       <Text style={styles.title}>Bem-vindo de volta!</Text>
       <Text style={styles.subtitle}>Faça login para continuar.</Text>
       
